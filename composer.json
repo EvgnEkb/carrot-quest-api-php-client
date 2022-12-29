@@ -1,0 +1,17 @@
+{
+    "name": "evgeny/carrot-quest-api-php-client",
+    "autoload": {
+        "psr-4": {
+            "Evgeny\\CarrotQuestApiPhpClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Евгений Шарафетдинов",
+            "email": "evgn.ekb@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}
