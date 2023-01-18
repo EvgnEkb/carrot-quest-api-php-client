@@ -1,5 +1,9 @@
 # PHP пакет для работы с api сервиса Carrot Quest
 
+## Установить из composer
+```bash
+composer require evgeny/carrot-quest-api-php-client
+```
 
 ## Пример использования
 
