@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class CarrotQuestApi
 {
-    const PACKAGE_NAME_FOR_CONSOLE = "\e[33m[ CarrotQuestApiPhpClient ] \n\n\e[0m";
+    const PACKAGE_NAME_FOR_CONSOLE = "[ CarrotQuestApiPhpClient ]";
 
     const API_URL = 'https://api.carrotquest.io/v1/';
 

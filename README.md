@@ -1,10 +1,13 @@
 # PHP пакет для работы с api сервиса Carrot Quest
 
+
+## Пример использования
+
 ```php
 $carrotQuestApi = new CarrotQuestApi('AUTH_KEY', 'APP_ID_INTEGER');
 ```
 
-## Пример формирования фильтра
+### Пример формирования фильтра
 
 ```php
 $usersFilters = UsersFilter::makeWrapper
@@ -15,10 +18,40 @@ $usersFilters = UsersFilter::makeWrapper
 );
 ```
 
-## Пример применения сформированных фильтров при получении пользователей
+### Пример применения сформированных фильтров при получении пользователей
 
 ```php
 
 $users = $carrotQuestApi->getUsersRecursive($usersFilters);
 
+```
+
+### Получить онлайн-пользователей на сайте
+```php
+$carrotQuestApi->getActiveUsers()
+```
+
+### Получить диалоги приложения
+```php
+$carrotQuestApi->getConversations()
+```
+
+### Получить диалог
+```php
+$carrotQuestApi->getConversationsItem($id);
+```
+
+### Получить части диалога
+```php
+$carrotQuestApi->getConversationsItemPart(Int $id, $after, Int $count)
+```
+
+### Отметить диалог прочитанным
+```php
+$carrotQuestApi->markreadConversationItem(Int $id)
+```
+
+### Получить каналы приложения
+```php
+$carrotQuestApi->getChannels()
 ```
