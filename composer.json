@@ -1,5 +1,7 @@
 {
     "name": "evgeny/carrot-quest-api-php-client",
+    "description": "Пакет для работы с api сервиса carrotquest.io",
+    "keywords": ["carrotquest.io", "api carrot quest"],
     "autoload": {
         "psr-4": {
             "Evgeny\\CarrotQuestApiPhpClient\\": "src/"
