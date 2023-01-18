@@ -32,12 +32,12 @@ $users = $carrotQuestApi->getUsersRecursive($usersFilters);
 
 ### Получить онлайн-пользователей
 ```php
-$carrotQuestApi->getActiveUsers()
+$carrotQuestApi->getActiveUsers();
 ```
 
 ### Получить диалоги приложения
 ```php
-$carrotQuestApi->getConversations()
+$carrotQuestApi->getConversations();
 ```
 
 ### Получить диалог
@@ -47,15 +47,15 @@ $carrotQuestApi->getConversationsItem($id);
 
 ### Получить части диалога
 ```php
-$carrotQuestApi->getConversationsItemPart(Int $id, $after, Int $count)
+$carrotQuestApi->getConversationsItemPart(Int $id, $after, Int $count);
 ```
 
 ### Отметить диалог прочитанным
 ```php
-$carrotQuestApi->markreadConversationItem(Int $id)
+$carrotQuestApi->markreadConversationItem(Int $id);
 ```
 
 ### Получить каналы приложения
 ```php
-$carrotQuestApi->getChannels()
+$carrotQuestApi->getChannels();
 ```
