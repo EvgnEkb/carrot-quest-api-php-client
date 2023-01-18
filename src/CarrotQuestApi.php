@@ -35,13 +35,14 @@ class CarrotQuestApi
     }
 
     /**
-     * Отправка запроса
+     * Отправляет запрос
      *
      * @param String $url
      * @param array $data
-     * @return void
+     * @param String $requestType
+     * @return Array
      */
-    protected function sendRequest(String $url, Array $data = []): Array
+    private function sendRequest(String $url, Array $data = [], String $requestType): Array
     {
         $client = new Client([
             'base_uri' => self::API_URL
@@ -53,12 +54,36 @@ class CarrotQuestApi
             'form_params' => $formData
         ];
 
-        $response = $client->get($url, $data);
+        $response = $client->$requestType($url, $data);
         $response = $response->getBody()->getContents();
 
         return json_decode($response, true);
     }
+    
+    /**
+     * Отправляет Post запрос
+     *
+     * @param String $url
+     * @param array $data
+     * @return Array
+     */
+    private function sendRequestPost(String $url, Array $data = []): Array
+    {
+        return $this->sendRequest($url, $data, 'post');
+    }
 
+    /**
+     * Отправляет Get запрос
+     *
+     * @param String $url
+     * @param array $data
+     * @return Array
+     */
+    private function sendRequestGet(String $url, Array $data = []): Array
+    {
+        return $this->sendRequest($url, $data, 'get');
+    }
+    
     /**
      * Получить пользователей (лидов)
      *
@@ -83,7 +108,7 @@ class CarrotQuestApi
         if ($filters) $params = array_merge($params, ['filters' => $filters]);
 
         try{
-            $response = $this->sendRequest($url, $params);
+            $response = $this->sendRequestGet($url, $params);
 
             return $response['data']['users'];
 
@@ -126,7 +151,7 @@ class CarrotQuestApi
     public function getActiveUsers()
     {
         $url = "/apps/{$this->appId}/activeusers";
-        $response = $this->sendRequest($url);
+        $response = $this->sendRequestGet($url);
         return $response['data'];
     }
 
@@ -149,7 +174,7 @@ class CarrotQuestApi
     public function getConversationsItem(Int $id): Array
     {
         $url = "/conversations/{$id}";
-        $response = $this->sendRequest($url);
+        $response = $this->sendRequestGet($url);
         return $response['data'];
     }
 
@@ -164,12 +189,25 @@ class CarrotQuestApi
     public function getConversationsItemPart(Int $id, $after, Int $count): Array
     {
         $url = "/conversations/{$id}/parts";
-        $response = $this->sendRequest($url, [
+        $response = $this->sendRequestGet($url, [
             'after' => $after,
             'count' => $count
         ]);
 
         return $response['data'];
+    }
+
+    /**
+     * Отметить диалог прочитанным
+     *
+     * @param Int $id
+     * @return String
+     */
+    public function markreadConversationItem(Int $id): String
+    {
+        $url = "/conversations/{$id}/markread";
+        $response = $this->sendRequestPost($url);
+        return $response['meta']['status'];
     }
 
     /**
@@ -180,7 +218,7 @@ class CarrotQuestApi
     public function getChannels(): Array
     {
         $url = "/apps/{$this->appId}/channels";
-        $response = $this->sendRequest($url);
+        $response = $this->sendRequestGet($url);
         return $response['data'];
     }
 
