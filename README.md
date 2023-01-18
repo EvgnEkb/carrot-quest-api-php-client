@@ -30,7 +30,7 @@ $users = $carrotQuestApi->getUsersRecursive($usersFilters);
 
 ```
 
-### Получить онлайн-пользователей на сайте
+### Получить онлайн-пользователей
 ```php
 $carrotQuestApi->getActiveUsers()
 ```
